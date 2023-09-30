@@ -13,13 +13,13 @@ class Mentor:
         self.surname = surname
         self.courses_attached = []   
         
-class lecturer(Mentor):
+class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
 
     def rate_lecturer(self, lecturer, course, grade):
-        if isinstance(lecturer, Mentor) and course in self.courses_attached and course in lecturer.courses_attached:
+        if isinstance(lecturer, Lecturer) and course in self.courses_attached and course in lecturer.courses_attached:
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
@@ -40,15 +40,11 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'     
 
-    def rate_hw(self, student, course, grade):
-        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
-            if course in student.grades:
-                student.grades[course] += [grade]
-            else:
-                student.grades[course] = [grade]
-        else:
-            return 'Ошибка'
-              
+    def __str__(self, name, surname):
+        return f'Имя: {self.name} \n Фамилия: {self.surname}'
+    
+Reviewers = Reviewer ("Bilbo", "Frodo") 
+print (Reviewers.__str__("Bilbo", "Frodo"))     
  
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
