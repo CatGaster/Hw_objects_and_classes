@@ -75,43 +75,79 @@ class Reviewer(Mentor):
         return f'Имя ревьюера: {self.name} \n Фамилия: {self.surname}'
     
 
-some_student = Student('Frodo', 'Baggins', 'Male')
-some_student.courses_in_progress+= ['Python']
-some_student.courses_in_progress+= ['Git'] 
-some_student.finished_courses += ['Введение в программирование']
+some_student1 = Student('Frodo', 'Baggins', 'Male')
+some_student1.courses_in_progress+= ['Python']
+some_student1.courses_in_progress+= ['Git'] 
+some_student1.finished_courses += ['Введение в программирование']
 
-some_reviewer = Reviewer('Bilbo', 'Baggins')
-some_reviewer.courses_attached += ['Python']
-some_reviewer.courses_attached += ['Git']
-some_reviewer.rate_home_work(some_student, 'Python', 10)
-some_reviewer.rate_home_work(some_student, 'Git', 9)
+some_reviewer1 = Reviewer('Bilbo', 'Baggins')
+some_reviewer1.courses_attached += ['Python']
+some_reviewer1.courses_attached += ['Git']
+some_reviewer1.rate_home_work(some_student1, 'Python', 10)
+some_reviewer1.rate_home_work(some_student1, 'Git', 5)
 
 some_lecturer1 = Lecturer('Gandalf', 'Gray')
 some_lecturer1.courses_attached += ['Python']
 some_lecturer1.courses_attached += ['Git']
  
-some_student.rate_lecturer(some_lecturer1, 'Python', 9)
-some_student.rate_lecturer(some_lecturer1, 'Python', 10)
-some_student.rate_lecturer(some_lecturer1, 'Git', 8)
+some_student1.rate_lecturer(some_lecturer1, 'Python', 9)
+some_student1.rate_lecturer(some_lecturer1, 'Python', 10)
+some_student1.rate_lecturer(some_lecturer1, 'Git', 8)
 
-some_student1 = Student('Ruoy', 'Eman', 'Male')
-print(some_reviewer)
+print(some_reviewer1)
 print()
-
 print(some_lecturer1)
 some_lecturer1.show_grades()
-
 print()
-print(some_student)
+print(some_student1)
+print()
 
 some_student2 = Student('Harry', 'Potter', 'Male')
 some_student2.courses_in_progress+= ['Python']
 some_student2.courses_in_progress+= ['Git']
 some_student2.finished_courses += ['Введение в программирование']
 
-# some_lecturer2 = Lecturer('Albus', 'Dumbledore')
-# some_lecturer2.courses_attached += ['Python']
-# some_lecturer2.courses_attached += ['Git']
+some_reviewer2 = Reviewer('Severus', 'Snape')
+some_reviewer2.courses_attached += ['Python']
+some_reviewer2.courses_attached += ['Git']
+some_reviewer2.rate_home_work(some_student2, 'Python', 8)
+some_reviewer2.rate_home_work(some_student2, 'Git', 10)
 
+some_lecturer2 = Lecturer('Albus', 'Dumbledore')
+some_lecturer2.courses_attached += ['Python']
+some_lecturer2.courses_attached += ['Git']
+
+some_student2.rate_lecturer(some_lecturer2, 'Python', 9)
+some_student2.rate_lecturer(some_lecturer2, 'Python', 10)
+some_student2.rate_lecturer(some_lecturer2, 'Git', 10)
+
+print(some_reviewer2)
+print()
+print(some_lecturer2)
+print()
 print(some_student2)
+print()
 
+students_list= [some_student1,some_student2]
+
+def average_all_students_grade_list(students_list,course):
+    overall_grades=[]
+    for student in students_list:
+        for key, value in student.grades.items():
+            if key==course:
+                overall_grades +=value
+    return sum(overall_grades)/len(overall_grades)
+
+print(f"Средняя оценка студентов по курсам {'Python'}: {average_all_students_grade_list(students_list,'Python')}")
+
+lectors_list= [some_lecturer1,some_lecturer2]
+
+def average_all_lectors_grade_list(lectors_list,course):
+    overall_grades=[]
+    for lecturer in lectors_list:
+        for key, value in lecturer.scores.items():
+            if key==course:
+                overall_grades +=value
+    return sum(overall_grades)/len(overall_grades)
+
+print(f"Средняя оценка лекторов по курсам {'Python'}: {average_all_lectors_grade_list(lectors_list,'Python')}")
