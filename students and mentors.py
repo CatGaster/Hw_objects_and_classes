@@ -6,6 +6,9 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}      
+
+    def __lt__ (self,other):
+        return self.average_grades() < other.average_grades()
     #task 2
     def rate_lecturer(self, lecturer, course, score):
         if isinstance(lecturer, Lecturer) and course in self.courses_in_progress and course in lecturer.courses_attached:
@@ -42,6 +45,7 @@ class Lecturer(Mentor):
 
     def show_grades(self):
         print (f'В словаре у лектора: {self.scores}')    
+
 #task 3
     def average_score(self):
         if self.scores:
@@ -52,11 +56,15 @@ class Lecturer(Mentor):
 
     def __str__(self):
         return f'Имя лектора: {self.name} \n Фамилия: {self.surname} \n средняя оценка за лекции: {self.average_score()}' 
+    
+    def __lt__(self, other):
+        return self.average_score() < other.average_score()
 
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname) 
+
 #task 2
     def rate_home_work(self, student, course, grade):
         if isinstance(student, Student) and course in self.courses_attached  and course in student.courses_in_progress:
@@ -66,6 +74,7 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return "Ошибка"             
+        
 #task 3
     def __str__(self):
         return f'Имя ревьюера: {self.name} \n Фамилия: {self.surname}'
@@ -138,3 +147,7 @@ def average_all_lectors_grade_list(lectors_list,course):
     return sum(overall_grades)/len(overall_grades)
 
 print(f"Средняя оценка лекторов по курсам {'Python'}: {average_all_lectors_grade_list(lectors_list,'Python')}")
+
+print(f'Оценки студента {some_student1.name} больше оценки студента {some_student2.name} \n Ответ: {some_student1 < some_student2}')
+print(f'Оценки лектора {some_lecturer1.name} больше оценки лектора {some_lecturer2.name} \n Ответ: {some_lecturer1 < some_lecturer2}')
+
