@@ -53,7 +53,7 @@ class Lecturer(Mentor):
             return sum(common_list)/len(common_list)
         elif not self.scores:
             return "Нет оценок"
-
+            
     def __str__(self):
         return f'Имя лектора: {self.name} \n Фамилия: {self.surname} \n средняя оценка за лекции: {self.average_score()}' 
     
@@ -64,7 +64,6 @@ class Lecturer(Mentor):
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname) 
-
 #task 2
     def rate_home_work(self, student, course, grade):
         if isinstance(student, Student) and course in self.courses_attached  and course in student.courses_in_progress:
@@ -78,7 +77,7 @@ class Reviewer(Mentor):
 #task 3
     def __str__(self):
         return f'Имя ревьюера: {self.name} \n Фамилия: {self.surname}'
-    
+
 
 some_student1 = Student('Frodo', 'Baggins', 'Male')
 some_student1.courses_in_progress+= ['Python']
@@ -102,6 +101,9 @@ some_student1.rate_lecturer(some_lecturer1, 'Git', 8)
 print(f"{some_reviewer1}\n")
 print(f"{some_lecturer1}\n")
 print(f"{some_student1}\n")
+print(f"{some_reviewer1}\n")
+print(f"{some_lecturer1}\n")
+print(f"{some_student1}\n")
 
 some_student2 = Student('Harry', 'Potter', 'Male')
 some_student2.courses_in_progress+= ['Python']
@@ -122,6 +124,9 @@ some_student2.rate_lecturer(some_lecturer2, 'Python', 9)
 some_student2.rate_lecturer(some_lecturer2, 'Python', 5)
 some_student2.rate_lecturer(some_lecturer2, 'Git', 10)
 
+print(f"{some_reviewer2}\n")
+print(f"{some_lecturer2}\n")
+print(f"{some_student2}\n")
 print(f"{some_reviewer2}\n")
 print(f"{some_lecturer2}\n")
 print(f"{some_student2}\n")
