@@ -9,6 +9,7 @@ class Student:
 
     def __lt__ (self,other):
         return self.average_grades() < other.average_grades()
+
     #task 2
     def rate_lecturer(self, lecturer, course, score):
         if isinstance(lecturer, Lecturer) and course in self.courses_in_progress and course in lecturer.courses_attached:
@@ -26,9 +27,11 @@ class Student:
         elif not self.grades:
             return "Нет оценок"    
                   
-#task 3    
     def __str__(self):
-        return f'Имя студента: {self.name} \n Фамилия: {self.surname} \n Средняя оценка за домашние задания: {self.average_grades()} \n Курсы в процессе изучения: {self.courses_in_progress} \nЗавершенные курсы: {self.finished_courses}'
+        return f'Имя студента: {self.name} \n Фамилия: {self.surname}\
+              \n Средняя оценка за домашние задания: {self.average_grades()}\
+                \n Курсы в процессе изучения: {self.courses_in_progress}\
+                  \nЗавершенные курсы: {self.finished_courses}'
 
 
 class Mentor:
@@ -55,7 +58,8 @@ class Lecturer(Mentor):
             return "Нет оценок"
             
     def __str__(self):
-        return f'Имя лектора: {self.name} \n Фамилия: {self.surname} \n средняя оценка за лекции: {self.average_score()}' 
+        return f'Имя лектора: {self.name} \n Фамилия: {self.surname} \
+              \n средняя оценка за лекции: {self.average_score()}' 
     
     def __lt__(self, other):
         return self.average_score() < other.average_score()
@@ -101,9 +105,6 @@ some_student1.rate_lecturer(some_lecturer1, 'Git', 8)
 print(f"{some_reviewer1}\n")
 print(f"{some_lecturer1}\n")
 print(f"{some_student1}\n")
-print(f"{some_reviewer1}\n")
-print(f"{some_lecturer1}\n")
-print(f"{some_student1}\n")
 
 some_student2 = Student('Harry', 'Potter', 'Male')
 some_student2.courses_in_progress+= ['Python']
@@ -124,9 +125,6 @@ some_student2.rate_lecturer(some_lecturer2, 'Python', 9)
 some_student2.rate_lecturer(some_lecturer2, 'Python', 5)
 some_student2.rate_lecturer(some_lecturer2, 'Git', 10)
 
-print(f"{some_reviewer2}\n")
-print(f"{some_lecturer2}\n")
-print(f"{some_student2}\n")
 print(f"{some_reviewer2}\n")
 print(f"{some_lecturer2}\n")
 print(f"{some_student2}\n")
